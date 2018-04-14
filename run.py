@@ -169,6 +169,7 @@ def main():
     summary_writer.close()
 
     print('mean score: %f' % runner.get_mean_score())
+    print('max  score: %f' % runner.get_max_score())
 
 
 if __name__ == "__main__":

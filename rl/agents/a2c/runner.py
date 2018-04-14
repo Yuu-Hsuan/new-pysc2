@@ -34,6 +34,7 @@ class A2CRunner():
     self.preproc = Preprocessor(self.envs.observation_spec()[0])
     self.episode_counter = 0
     self.cumulative_score = 0.0
+    self.all_scores = []
 
   def reset(self):
     obs_raw = self.envs.reset()
@@ -41,6 +42,9 @@ class A2CRunner():
 
   def get_mean_score(self):
     return self.cumulative_score / self.episode_counter
+
+  def get_max_score(self):
+    return max(self.all_scores)
 
   def _summarize_episode(self, timestep):
     score = timestep.observation["score_cumulative"][0]
@@ -91,6 +95,7 @@ class A2CRunner():
         if t.last():
           score = self._summarize_episode(t)
           self.cumulative_score += score
+          self.all_scores.append(score)
 
     self.last_obs = last_obs
 
