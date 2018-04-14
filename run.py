@@ -97,7 +97,8 @@ def main():
         step_mul=args.step_mul,
         game_steps_per_episode=0,
         screen_size_px=size_px,
-        minimap_size_px=size_px)
+        minimap_size_px=size_px,
+        visualize=False)
     vis_env_args = env_args.copy()
     vis_env_args['visualize'] = args.vis
     num_vis = min(args.envs, args.max_windows)
@@ -168,6 +169,7 @@ def main():
     summary_writer.close()
 
     print('mean score: %f' % runner.get_mean_score())
+    print('max  score: %f' % runner.get_max_score())
 
 
 if __name__ == "__main__":
