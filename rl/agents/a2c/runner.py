@@ -12,6 +12,8 @@ class A2CRunner():
   def __init__(self,
                agent,
                envs,
+               save_replay_episodes,
+               replay_dir,
                summary_writer=None,
                train=True,
                n_steps=8,
@@ -27,6 +29,8 @@ class A2CRunner():
     """
     self.agent = agent
     self.envs = envs
+    self.save_replay_episodes = save_replay_episodes
+    self.replay_dir = replay_dir
     self.summary_writer = summary_writer
     self.train = train
     self.n_steps = n_steps
@@ -51,6 +55,9 @@ class A2CRunner():
 
     print("episode %d: score = %f" % (self.episode_counter, score))
     self.episode_counter += 1
+
+    if self.save_replay_episodes != 0 and self.episode_counter % self.save_replay_episodes == 0:
+      self.envs.save_replay(self.replay_dir)
     return score
 
   def run_batch(self, train_summary=False):

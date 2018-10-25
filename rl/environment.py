@@ -60,6 +60,9 @@ def worker(remote, env_fn_wrapper):
     elif cmd == 'observation_spec':
       spec = env.observation_spec()
       remote.send(spec)
+    elif cmd == 'save_replay':
+      env.save_replay(action)
+      remote.send(None)
     else:
       raise NotImplementedError
 
@@ -117,6 +120,10 @@ class SubprocVecEnv:
       remote.send(('observation_spec', None))
     specs = [remote.recv() for remote in self.remotes]
     return specs
+
+  def save_replay(self, replay_dir):
+    self.remotes[0].send(('save_replay', replay_dir))
+    self.remotes[0].recv()
 
 
 def make_sc2env(**kwargs):

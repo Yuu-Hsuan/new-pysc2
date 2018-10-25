@@ -66,6 +66,10 @@ parser.add_argument('--save_dir', type=str, default=os.path.join('out','models')
                     help='root directory for checkpoint storage')
 parser.add_argument('--summary_dir', type=str, default=os.path.join('out','summary'),
                     help='root directory for summary storage')
+parser.add_argument('--save_replay_episodes', type=int, default=0,
+                    help='number of episodes until a replay is recorded. 0 means no replay.')
+parser.add_argument('--replay_dir', type=str, default=os.path.join('out','replays'),
+                    help='root directory for replay storage')
 
 args = parser.parse_args()
 # TODO write args to config file and store together with summaries (https://pypi.python.org/pypi/ConfigArgParse)
@@ -77,6 +81,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 ckpt_path = os.path.join(args.save_dir, args.experiment_id)
 summary_type = 'train' if args.train else 'eval'
 summary_path = os.path.join(args.summary_dir, args.experiment_id, summary_type)
+replay_path = os.path.abspath(os.path.join(args.replay_dir, args.experiment_id))
 
 
 def _save_if_training(agent, summary_writer):
@@ -124,6 +129,8 @@ def main():
     runner = A2CRunner(
         envs=envs,
         agent=agent,
+        save_replay_episodes=args.save_replay_episodes,
+        replay_dir=replay_path,
         train=args.train,
         summary_writer=summary_writer,
         discount=args.discount,
