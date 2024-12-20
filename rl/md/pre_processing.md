@@ -119,7 +119,7 @@ class Preprocessor():
           預處理畫面和小地圖數據
           合併玩家的標量特徵
           將這些特徵組裝為字典返回
-
+  '''
   def _preprocess_obs(self, obs):
     """Compute screen, minimap and flat network inputs from raw observations.(將單個觀察值轉換為畫面、小地圖、標量及可用動作特徵)
     """
