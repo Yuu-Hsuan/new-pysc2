@@ -108,7 +108,7 @@ def worker(remote, env_fn_wrapper):
       raise NotImplementedError
 ```
 
-### 5.CloudpickleWrapper 類別：
+### 5.`CloudpickleWrapper` 類別：
 使用 `cloudpickle` 序列化環境函數，因為 `multiprocessing` 默認使用的 `pickle` 不支援某些類型的數據
 ```
 class CloudpickleWrapper(object):
@@ -130,7 +130,7 @@ class CloudpickleWrapper(object):
     self.x = pickle.loads(ob)
 ```
 
-### 6.SubprocVecEnv 類別：多進程環境管理
+### 6.`SubprocVecEnv` 類別：多進程環境管理
 
 * 主要功能：
   `SubprocVecEnv` 提供多進程環境管理，可以同時運行多個 StarCraft II 的環境
