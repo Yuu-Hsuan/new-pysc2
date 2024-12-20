@@ -130,7 +130,7 @@ class CloudpickleWrapper(object):
     self.x = pickle.loads(ob)
 ```
 
-### 5.SubprocVecEnv 類別：多進程環境管理
+### 6.SubprocVecEnv 類別：多進程環境管理
 
 * 主要功能：
   `SubprocVecEnv` 提供多進程環境管理，可以同時運行多個 StarCraft II 的環境
@@ -182,7 +182,7 @@ class SubprocVecEnv:
     return specs
 ```
 
-### 6.創建遊戲環境 (`make_sc2env`)
+### 7.創建遊戲環境 (`make_sc2env`)
 使用提供的參數創建 StarCraft II 遊戲環境
 ```
 def make_sc2env(**kwargs):
