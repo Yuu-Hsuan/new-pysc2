@@ -1,4 +1,4 @@
-### 概述
+### 0.概述
 這段程式碼主要與 DeepMind 的 PySC2 庫相關，目的是將 StarCraft II 的原始觀察數據（observation）轉換為適合神經網絡處理的輸入格式
 
 ### 1.匯入
