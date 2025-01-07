@@ -1,4 +1,4 @@
-來源:(https://github.com/google-deepmind/pysc2/blob/master/pysc2/lib/actions.py)
+# 來源:(https://github.com/google-deepmind/pysc2/blob/master/pysc2/lib/actions.py)
 
 # Copyright 2017 Google Inc. All Rights Reserved.
 #
